@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.harium.etyl</groupId>
     <artifactId>geometry</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <properties>
         <libgdx.version>1.9.7</libgdx.version>
         <javadoc.opts>-Xdoclint:none</javadoc.opts>
@@ -49,14 +49,14 @@
     </distributionManagement>
     <dependencies>
         <dependency>
-            <groupId>com.badlogicgames.gdx</groupId>
-            <artifactId>gdx</artifactId>
-            <version>1.9.7</version>
+            <groupId>com.harium.etyl</groupId>
+            <artifactId>etyl-gdx-util</artifactId>
+            <version>[1.0.0,)</version>
         </dependency>
         <dependency>
-            <groupId>com.harium</groupId>
-            <artifactId>etyl-commons</artifactId>
-            <version>1.0.10</version>
+            <groupId>com.harium.etyl</groupId>
+            <artifactId>commons</artifactId>
+            <version>[1.2.2,)</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
