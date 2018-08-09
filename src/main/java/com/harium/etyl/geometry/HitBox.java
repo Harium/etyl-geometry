@@ -4,26 +4,24 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
  * @author yuripourre
- *
  */
 
 public class HitBox {
 
-	// It should be a QuadTree
-	private List<Rectangle> areas = new ArrayList<Rectangle>();
-	
-	public HitBox() {
-		super();
-	}
+    // It should be a QuadTree
+    private List<Rectangle> areas = new ArrayList<Rectangle>();
 
-	public List<Rectangle> getAreas() {
-		return areas;
-	}
+    public HitBox() {
+        super();
+    }
 
-	public void setAreas(List<Rectangle> area) {
-		this.areas = area;
-	}
+    public List<Rectangle> getAreas() {
+        return areas;
+    }
+
+    public void setAreas(List<Rectangle> area) {
+        this.areas = area;
+    }
 
 }

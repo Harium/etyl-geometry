@@ -1,11 +1,11 @@
 package com.harium.etyl.geometry;
 
 
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 
-public class Circle {
+public class Circle3 {
 
-    private Vector2 center;
+    private Vector3 center;
     private float radius;
 
     /**
@@ -15,8 +15,8 @@ public class Circle {
      * @param centerY y center of the circle.
      * @param radius  Radius of the circle.
      */
-    public Circle(float centerX, float centerY, float radius) {
-        this.center = new Vector2(centerX, centerY);
+    public Circle3(float centerX, float centerY, float centerZ, float radius) {
+        this.center = new Vector3(centerX, centerY, centerZ);
         this.radius = radius;
     }
 
@@ -26,7 +26,7 @@ public class Circle {
      * @param center Center of the circle.
      * @param radius Radius of the circle.
      */
-    public Circle(Vector2 center, float radius) {
+    public Circle3(Vector3 center, float radius) {
         this.center = center;
         this.radius = radius;
     }
@@ -36,7 +36,7 @@ public class Circle {
      *
      * @param circle Circle to clone.
      */
-    public Circle(Circle circle) {
+    public Circle3(Circle3 circle) {
         this.center = circle.center;
         this.radius = circle.radius;
     }
@@ -46,11 +46,11 @@ public class Circle {
      *
      * @return the center of the circle.
      */
-    public Vector2 getCenter() {
+    public Vector3 getCenter() {
         return center;
     }
 
-    public void setCenter(Vector2 center) {
+    public void setCenter(Vector3 center) {
         this.center = center;
     }
 
@@ -73,6 +73,10 @@ public class Circle {
 
     public float circunference() {
         return (float) (2 * Math.PI * radius);
+    }
+
+    public boolean contains(Vector3 p) {
+        return radius > center.dst(p);
     }
 
     public String toString() {

@@ -4,8 +4,8 @@ import com.badlogic.gdx.math.Vector3;
 
 
 public class Triangle {
-	
-	Vector3 a;
+
+    Vector3 a;
     Vector3 b;
     Vector3 c;
 
@@ -39,7 +39,7 @@ public class Triangle {
     public void setC(Vector3 c) {
         this.c = c;
     }
-    
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -59,9 +59,9 @@ public class Triangle {
         result = 31 * result + (c != null ? c.hashCode() : 0);
         return result;
     }
-    
+
     @Override
     public String toString() {
-    	return "["+a+","+b+","+c+"]";
+        return "[" + a + "," + b + "," + c + "]";
     }
 }

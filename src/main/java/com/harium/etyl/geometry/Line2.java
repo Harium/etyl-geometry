@@ -54,8 +54,8 @@ public class Line2 {
     /**
      * Method to generate points between two points
      *
-     * @param p1 the first point
-     * @param p2 the last point
+     * @param p1     the first point
+     * @param p2     the last point
      * @param points number of points counting with p1 and p2
      * @return array of points
      */
@@ -98,7 +98,7 @@ public class Line2 {
      *
      * @param p1 first point of the line
      * @param p2 other point of the line
-     * @param q point to be calculated
+     * @param q  point to be calculated
      * @return distance between the q and the line p
      */
     public static double distance(Vector2 p1, Vector2 p2, Vector2 q) {
@@ -119,9 +119,10 @@ public class Line2 {
 
     /**
      * Answered at: http://stackoverflow.com/questions/1459368/snap-point-to-a-line-java
+     *
      * @param p1 first point of the line
      * @param p2 other point of the line
-     * @param q point to be calculated
+     * @param q  point to be calculated
      * @return the nearest point
      */
     public static Vector2 nearestPoint(Vector2 p1, Vector2 p2, Vector2 q) {
@@ -164,7 +165,7 @@ public class Line2 {
     }
 
     public double length() {
-        return MathHelper.distance(p1,p2);
+        return MathHelper.distance(p1, p2);
     }
 
 }

@@ -22,19 +22,6 @@ public class MathHelper {
         return normal;
     }
 
-    public static boolean isClockwise(Triangle triangle) {
-        return isClockwise(triangle.getA(), triangle.getB(), triangle.getC());
-    }
-
-    public static boolean isClockwise(Vector3 a, Vector3 b, Vector3 c) {
-        PointLinePosition res = PointLineTest.pointLineTest(a, b, c);
-
-        return (res == PointLinePosition.ON_SEGMENT) ||
-                (res == PointLinePosition.LEFT) ||
-                (res == PointLinePosition.INFRONT_OF_A) ||
-                (res == PointLinePosition.BEHIND_B);
-    }
-
     public static float triangleArea(Triangle triangle) {
         Vector3 a = triangle.getA();
         Vector3 b = triangle.getB();
