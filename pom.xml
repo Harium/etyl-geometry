@@ -7,7 +7,6 @@
     <artifactId>geometry</artifactId>
     <version>1.0.3</version>
     <properties>
-        <libgdx.version>1.9.7</libgdx.version>
         <javadoc.opts>-Xdoclint:none</javadoc.opts>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <gpg.executable>gpg2</gpg.executable>
