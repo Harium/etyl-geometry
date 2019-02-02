@@ -74,7 +74,7 @@ public class Ellipse {
     }
 
     public boolean collidePoint(double px, double py) {
-        return CollisionDetector.colideEllipsePoint(center.x, center.y, angle, w, h, px, py);
+        return CollisionDetector.collideEllipsePoint(center.x, center.y, angle, w, h, px, py);
     }
 
 }
