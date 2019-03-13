@@ -2,7 +2,7 @@ package com.harium.etyl.geometry;
 
 public class Point3D extends Point2D {
 
-    double z;
+    public double z;
 
     public Point3D() {
         this(0, 0, 0);

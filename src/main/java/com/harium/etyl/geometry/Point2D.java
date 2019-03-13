@@ -5,8 +5,8 @@ package com.harium.etyl.geometry;
  */
 public class Point2D {
 
-    double x;
-    double y;
+    public double x;
+    public double y;
 
     public Point2D() {
         super();
