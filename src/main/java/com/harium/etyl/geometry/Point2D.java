@@ -4,26 +4,13 @@ package com.harium.etyl.geometry;
  * @author yuripourre
  */
 public class Point2D {
-    protected String name = "";
 
-    protected double x = 0d;
-    protected double y = 0d;
-
-    protected int color = 0x000000;//Black Hex Value
+    double x;
+    double y;
 
     public Point2D() {
         super();
         setLocation(0, 0);
-    }
-
-    public Point2D(double x, double y, int color) {
-        this(x, y);
-        this.color = color;
-    }
-
-    public Point2D(double x, double y, String name) {
-        this(x, y);
-        this.name = name;
     }
 
     public Point2D(double x, double y) {
@@ -36,50 +23,26 @@ public class Point2D {
         setLocation(point.x, point.y);
     }
 
-    public double getX() {
-        return x;
-    }
-
-    public void setX(double x) {
+    public void setLocation(double x, double y) {
         this.x = x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    public void setY(double y) {
         this.y = y;
     }
 
-    public void setLocation(double x, double y) {
-        setX(x);
-        setY(y);
+    public void offset(double x, double y) {
+        offsetX(x);
+        offsetY(y);
     }
 
-    public void setOffset(double x, double y) {
-        setOffsetX(x);
-        setOffsetY(y);
-    }
-
-    public void setOffsetX(double x) {
+    public void offsetX(double x) {
         this.x += x;
     }
 
-    public void setOffsetY(double y) {
+    public void offsetY(double y) {
         this.y += y;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public double angle(Point2D point) {
-        return angle(point.getX(), point.getY());
+        return angle(point.x, point.y);
     }
 
     public double angle(double px, double py) {
@@ -116,7 +79,7 @@ public class Point2D {
     }
 
     public void rotate(Point2D p, double degreeAngle) {
-        rotate(p.getX(), p.getY(), degreeAngle);
+        rotate(p.x, p.y, degreeAngle);
     }
 
     public static boolean isRightTurn(Point2D a, Point2D b, Point2D c) {
@@ -125,7 +88,7 @@ public class Point2D {
 
     public double distance(Point2D point) {
 
-        return distance(point.getX(), point.getY());
+        return distance(point.x, point.y);
     }
 
     public double distance(double px, double py) {
@@ -142,8 +105,8 @@ public class Point2D {
 
     public Point2D distantPoint(Point2D b, double distance) {
 
-        double deltaX = x - b.getX();
-        double deltaY = y - b.getY();
+        double deltaX = x - b.x;
+        double deltaY = y - b.y;
 
         double dist = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
@@ -204,16 +167,8 @@ public class Point2D {
         }
     }
 
-    public int getColor() {
-        return color;
-    }
-
-    public void setColor(int color) {
-        this.color = color;
-    }
-
     public static Point2D clone(Point2D point) {
-        return new Point2D(point.getX(), point.getY());
+        return new Point2D(point.x, point.y);
     }
 
     @Override
