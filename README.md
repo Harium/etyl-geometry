@@ -8,6 +8,6 @@ This module needs Etyl to work properly (see dependencies).
 <dependency>
     <groupId>com.harium.etyl</groupId>
     <artifactId>geometry</artifactId>
-    <version>1.0.3</version>
+    <version>1.0.5</version>
 </dependency>
 ```
