@@ -1,41 +1,41 @@
 package com.harium.etyl.geometry.curve;
 
-import com.badlogic.gdx.math.Vector3;
+import com.harium.etyl.geometry.Point3D;
 
 public class Curve3 {
 
     // Start / End
-    protected Vector3 p0, p1;
+    protected Point3D p0, p1;
 
-    public Vector3[] flattenCurve(int segmentCount) {
-        Vector3[] coordinates = new Vector3[segmentCount + 1];
-        float step = 1 / (float) segmentCount;
+    public Point3D[] flattenCurve(int segmentCount) {
+        Point3D[] coordinates = new Point3D[segmentCount + 1];
+        double step = 1 / (double) segmentCount;
 
-        coordinates[0] = new Vector3(p0);
+        coordinates[0] = new Point3D(p0);
         for (int i = 1; i <= segmentCount; i++) {
-            float t = i * step;
-            coordinates[i] = new Vector3(x(t), y(t), z(t));
+            double t = i * step;
+            coordinates[i] = new Point3D(x(t), y(t), z(t));
         }
         return coordinates;
     }
 
-    public float x(float t) {
+    public double x(double t) {
         return p0.x;
     }
 
-    public float y(float t) {
+    public double y(double t) {
         return p0.y;
     }
 
-    public float z(float t) {
+    public double z(double t) {
         return p0.z;
     }
 
-    public Vector3 getP0() {
+    public Point3D getP0() {
         return p0;
     }
 
-    public Vector3 getP1() {
+    public Point3D getP1() {
         return p1;
     }
 

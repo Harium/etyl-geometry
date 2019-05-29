@@ -1,6 +1,6 @@
 package com.harium.etyl.geometry.curve;
 
-import com.badlogic.gdx.math.Vector2;
+import com.harium.etyl.geometry.Point2D;
 
 /**
  * Represents a flat curve (segment)
@@ -8,43 +8,44 @@ import com.badlogic.gdx.math.Vector2;
 public class Curve {
 
     // Start / End
-    protected Vector2 p0, p1;
+    public Point2D p0;
+    public Point2D p1;
 
     public Curve() {
-        p0 = new Vector2(0, 0);
-        p1 = new Vector2(0, 0);
+        p0 = new Point2D(0, 0);
+        p1 = new Point2D(0, 0);
     }
 
-    public Curve(Vector2 p0, Vector2 p1) {
+    public Curve(Point2D p0, Point2D p1) {
         this.p0 = p0;
         this.p1 = p1;
     }
 
-    public Vector2[] flattenCurve(int segmentCount) {
-        Vector2[] coordinates = new Vector2[segmentCount + 1];
-        float step = 1 / (float) segmentCount;
+    public Point2D[] flattenCurve(int segmentCount) {
+        Point2D[] coordinates = new Point2D[segmentCount + 1];
+        double step = 1 / (double) segmentCount;
 
-        coordinates[0] = new Vector2(p0);
+        coordinates[0] = new Point2D(p0);
         for (int i = 1; i <= segmentCount; i++) {
-            float t = i * step;
-            coordinates[i] = new Vector2(x(t), y(t));
+            double t = i * step;
+            coordinates[i] = new Point2D(x(t), y(t));
         }
         return coordinates;
     }
 
-    public float x(float t) {
+    public double x(double t) {
         return p0.x * (1 - t) + (p1.x * t);
     }
 
-    public float y(float t) {
+    public double y(double t) {
         return p0.y * (1 - t) + (p1.y * t);
     }
 
-    public Vector2 getP0() {
+    public Point2D getP0() {
         return p0;
     }
 
-    public Vector2 getP1() {
+    public Point2D getP1() {
         return p1;
     }
 
