@@ -1,6 +1,6 @@
 package com.harium.etyl.geometry.curve;
 
-import com.badlogic.gdx.math.Vector2;
+import com.harium.etyl.geometry.Point2D;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +11,7 @@ public class CurveTest {
 
     @Before
     public void setUp() {
-        curve = new Curve(new Vector2(0, 20), new Vector2(10, 20));
+        curve = new Curve(new Point2D(0, 20), new Point2D(10, 20));
     }
 
     @Test
@@ -30,7 +30,7 @@ public class CurveTest {
 
     @Test
     public void testFlattenCurve() {
-        Vector2[] coordinates = curve.flattenCurve(1);
+        Point2D[] coordinates = curve.flattenCurve(1);
         Assert.assertEquals(2, coordinates.length);
     }
 

@@ -1,30 +1,30 @@
 package com.harium.etyl.geometry.curve;
 
-import com.badlogic.gdx.math.Vector3;
+import com.harium.etyl.geometry.Point3D;
 
 public class QuadraticBezier3 extends Curve3 {
 
-    protected Vector3 p2;
+    protected Point3D p2;
 
-    public QuadraticBezier3(Vector3 p0, Vector3 p1, Vector3 p2) {
+    public QuadraticBezier3(Point3D p0, Point3D p1, Point3D p2) {
         this.p0 = p0;
         this.p1 = p1;
         this.p2 = p2;
     }
 
-    public float x(float t) {
+    public double x(double t) {
         return QuadraticBezier.interpolate(t, p0.x, p1.x, p2.x);
     }
 
-    public float y(float t) {
+    public double y(double t) {
         return QuadraticBezier.interpolate(t, p0.y, p1.y, p2.y);
     }
 
-    public float z(float t) {
+    public double z(double t) {
         return QuadraticBezier.interpolate(t, p0.z, p1.z, p2.z);
     }
 
-    public Vector3 getP2() {
+    public Point3D getP2() {
         return p2;
     }
 }
