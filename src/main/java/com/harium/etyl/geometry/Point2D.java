@@ -82,12 +82,7 @@ public class Point2D {
         rotate(p.x, p.y, degreeAngle);
     }
 
-    public static boolean isRightTurn(Point2D a, Point2D b, Point2D c) {
-        return (b.x - a.x) * (c.y - a.y) - (b.y - a.y) * (c.x - a.x) > 0;
-    }
-
     public double distance(Point2D point) {
-
         return distance(point.x, point.y);
     }
 
@@ -96,11 +91,23 @@ public class Point2D {
     }
 
     public static double distance(double px, double py, double qx, double qy) {
+        double dist = Math.sqrt(distanceSq(px, py, qx, qy));
+        return dist;
+    }
+
+    public double distanceSq(Point2D point) {
+        return distanceSq(point.x, point.y);
+    }
+
+    public double distanceSq(double px, double py) {
+        return distanceSq(px, py, this.x, this.y);
+    }
+
+    public static double distanceSq(double px, double py, double qx, double qy) {
         double difX = px - qx;
         double difY = py - qy;
 
-        double dist = Math.sqrt(difX * difX + difY * difY);
-        return dist;
+        return difX * difX + difY * difY;
     }
 
     public Point2D distantPoint(Point2D b, double distance) {
