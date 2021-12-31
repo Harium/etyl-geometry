@@ -1,7 +1,7 @@
 package com.harium.etyl.geometry;
 
 import com.badlogic.gdx.math.Vector2;
-import com.harium.etyl.commons.math.EtylMath;
+import com.harium.etyl.geometry.math.EtylMath;
 import com.harium.etyl.geometry.util.MathHelper;
 
 public class Line2 {
