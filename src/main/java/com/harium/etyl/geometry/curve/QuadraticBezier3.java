@@ -27,4 +27,13 @@ public class QuadraticBezier3 extends Curve3 {
     public Point3D getP2() {
         return p2;
     }
+
+    public void translate(float x, float y, float z) {
+        super.translate(x, y, z);
+
+        p2.x += x;
+        p2.y += y;
+        p2.z += z;
+    }
+
 }

@@ -39,4 +39,14 @@ public class Curve3 {
         return p1;
     }
 
+    public void translate(float x, float y, float z) {
+        p0.x += x;
+        p0.y += y;
+        p0.z += z;
+
+        p1.x += x;
+        p1.y += y;
+        p1.z += z;
+    }
+
 }

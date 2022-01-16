@@ -55,4 +55,12 @@ public class Curve {
         return p1;
     }
 
+    public void translate(float x, float y) {
+        p0.x += x;
+        p0.y += y;
+
+        p1.x += x;
+        p1.y += y;
+    }
+
 }
