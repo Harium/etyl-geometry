@@ -21,15 +21,21 @@ public class Curve {
         this.p1 = p1;
     }
 
-    public Point2D[] flattenCurve(int segmentCount) {
-        Point2D[] coordinates = new Point2D[segmentCount + 1];
-        double step = 1 / (double) segmentCount;
+    /**
+     * Approximate the curve to an array of points
+     * @param resolution - the number of points to approximate the curve
+     * @return the array of points
+     */
+    public Point2D[] flattenCurve(int resolution) {
+        Point2D[] coordinates = new Point2D[resolution];
+        double step = 1.0 / (resolution - 1);
 
         coordinates[0] = new Point2D(p0);
-        for (int i = 1; i <= segmentCount; i++) {
+        for (int i = 1; i < resolution - 1; i++) {
             double t = i * step;
             coordinates[i] = new Point2D(x(t), y(t));
         }
+        coordinates[resolution - 1] = new Point2D(p1);
         return coordinates;
     }
 
