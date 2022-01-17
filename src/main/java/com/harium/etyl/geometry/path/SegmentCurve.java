@@ -6,7 +6,9 @@ import com.harium.etyl.geometry.curve.Curve;
 public class SegmentCurve extends DataCurve {
 
     public SegmentCurve() {
+        type = CurveType.SEGMENT;
         curve = new Curve();
+        segmentCount = 1;
     }
 
     public SegmentCurve(Point2D start, Point2D end) {

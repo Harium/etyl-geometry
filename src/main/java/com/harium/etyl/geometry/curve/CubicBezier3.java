@@ -45,4 +45,30 @@ public class CubicBezier3 extends Curve3 {
         p3.z += z;
     }
 
+    public Point3D[] computeBoundingBox() {
+        Point3D min = new Point3D(p0);
+        Point3D max = new Point3D(p0);
+
+        min.x = Math.min(min.x, p1.x);
+        min.y = Math.min(min.y, p1.y);
+        min.z = Math.min(min.z, p1.z);
+        min.x = Math.min(min.x, p2.x);
+        min.y = Math.min(min.y, p2.y);
+        min.z = Math.min(min.z, p2.z);
+        min.x = Math.min(min.x, p3.x);
+        min.y = Math.min(min.y, p3.y);
+        min.z = Math.min(min.z, p3.z);
+
+        max.x = Math.max(max.x, p1.x);
+        max.y = Math.max(max.y, p1.y);
+        max.z = Math.max(max.z, p1.z);
+        max.x = Math.max(max.x, p2.x);
+        max.y = Math.max(max.y, p2.y);
+        max.z = Math.max(max.z, p2.z);
+        max.x = Math.max(max.x, p3.x);
+        max.y = Math.max(max.y, p3.y);
+        max.z = Math.max(max.z, p3.z);
+
+        return new Point3D[] { min, max };
+    }
 }

@@ -83,4 +83,89 @@ public class Path2D {
         }
     }
 
+    public void flipHorizontal() {
+        Point2D[] boundingBox = calculateBoundingBox();
+
+        double x = boundingBox[0].x;
+        double maxX = boundingBox[1].x;
+
+        for (DataCurve curve : curves) {
+            curve.getStart().x = x - curve.getStart().x + maxX;
+            curve.getEnd().x = x - curve.getEnd().x + maxX;
+
+            if (CurveType.QUADRATIC_BEZIER == curve.getType()) {
+                QuadraticCurve quadratic = (QuadraticCurve) curve;
+                quadratic.getControl1().x = x - quadratic.getControl1().x + maxX;
+
+            } else if (CurveType.CUBIC_BEZIER == curve.getType()) {
+                CubicCurve cubic = (CubicCurve) curve;
+
+                cubic.getControl1().x = x - cubic.getControl1().x + maxX;
+                cubic.getControl2().x = x - cubic.getControl2().x + maxX;
+            }
+        }
+    }
+
+    public void flipVertical() {
+        Point2D[] boundingBox = calculateBoundingBox();
+
+        double y = boundingBox[0].y;
+        double maxY = boundingBox[1].y;
+
+        for (DataCurve curve : curves) {
+            curve.getStart().y = y - curve.getStart().y + maxY;
+            curve.getEnd().y = y - curve.getEnd().y + maxY;
+
+            if (CurveType.QUADRATIC_BEZIER == curve.getType()) {
+                QuadraticCurve quadratic = (QuadraticCurve) curve;
+                quadratic.getControl1().y = y - quadratic.getControl1().y + maxY;
+
+            } else if (CurveType.CUBIC_BEZIER == curve.getType()) {
+                CubicCurve cubic = (CubicCurve) curve;
+
+                cubic.getControl1().y = y - cubic.getControl1().y + maxY;
+                cubic.getControl2().y = y - cubic.getControl2().y + maxY;
+            }
+        }
+    }
+
+    public Point2D[] calculateBoundingBox() {
+        Point2D min = new Point2D(Double.MAX_VALUE, Double.MAX_VALUE);
+        Point2D max = new Point2D(Double.MIN_VALUE, Double.MIN_VALUE);
+
+        for (DataCurve curve : curves) {
+            min.x = Math.min(min.x, curve.getStart().x);
+            min.y = Math.min(min.y, curve.getStart().y);
+            min.x = Math.min(min.x, curve.getEnd().x);
+            min.y = Math.min(min.y, curve.getEnd().y);
+
+            max.x = Math.max(max.x, curve.getStart().x);
+            max.y = Math.max(max.y, curve.getStart().y);
+            max.x = Math.max(max.x, curve.getEnd().x);
+            max.y = Math.max(max.y, curve.getEnd().y);
+
+            if (CurveType.QUADRATIC_BEZIER == curve.getType()) {
+                QuadraticCurve quadratic = (QuadraticCurve) curve;
+
+                min.x = Math.min(min.x, quadratic.getControl1().x);
+                min.y = Math.min(min.y, quadratic.getControl1().y);
+                max.x = Math.max(max.x, quadratic.getControl1().x);
+                max.y = Math.max(max.y, quadratic.getControl1().y);
+            } else if (CurveType.CUBIC_BEZIER == curve.getType()) {
+                CubicCurve cubic = (CubicCurve) curve;
+
+                min.x = Math.min(min.x, cubic.getControl1().x);
+                min.y = Math.min(min.y, cubic.getControl1().y);
+                min.x = Math.min(min.x, cubic.getControl2().x);
+                min.y = Math.min(min.y, cubic.getControl2().y);
+
+                max.x = Math.max(max.x, cubic.getControl1().x);
+                max.y = Math.max(max.y, cubic.getControl1().y);
+                max.x = Math.max(max.x, cubic.getControl2().x);
+                max.y = Math.max(max.y, cubic.getControl2().y);
+            }
+        }
+        return new Point2D[] { min, max };
+    }
+
 }

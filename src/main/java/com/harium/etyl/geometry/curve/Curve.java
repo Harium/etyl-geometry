@@ -63,4 +63,17 @@ public class Curve {
         p1.y += y;
     }
 
+    public Point2D[] computeBoundingBox() {
+        Point2D min = new Point2D(p0);
+        Point2D max = new Point2D(p0);
+
+        min.x = Math.min(min.x, p1.x);
+        min.y = Math.min(min.y, p1.y);
+
+        max.x = Math.max(max.x, p1.x);
+        max.y = Math.max(max.y, p1.y);
+
+        return new Point2D[] { min, max };
+    }
+
 }

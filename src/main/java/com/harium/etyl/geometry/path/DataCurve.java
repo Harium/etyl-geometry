@@ -8,7 +8,8 @@ import static com.harium.etyl.geometry.path.CurveType.SEGMENT;
 public abstract class DataCurve {
 
     public static final int SEGMENT_COUNT = 16;
-    protected CurveType type = SEGMENT;
+
+    protected CurveType type;
 
     protected Point2D start;
     protected Point2D end;
@@ -16,6 +17,8 @@ public abstract class DataCurve {
     protected Curve curve;
 
     protected Point2D[] segments;
+
+    protected int segmentCount = SEGMENT_COUNT;
 
     public DataCurve() {
 
@@ -49,7 +52,16 @@ public abstract class DataCurve {
         return curve;
     }
 
-    protected void updateCurve() {
-        segments = curve.flattenCurve(SEGMENT_COUNT);
+    public int getSegmentCount() {
+        return segmentCount;
     }
+
+    public void setSegmentCount(int segmentCount) {
+        this.segmentCount = segmentCount;
+    }
+
+    protected void updateCurve() {
+        segments = curve.flattenCurve(segmentCount);
+    }
+
 }

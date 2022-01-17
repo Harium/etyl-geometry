@@ -40,4 +40,21 @@ public class QuadraticBezier extends Curve {
         p2.x += x;
         p2.y += y;
     }
+
+    public Point2D[] computeBoundingBox() {
+        Point2D min = new Point2D(p0);
+        Point2D max = new Point2D(p0);
+
+        min.x = Math.min(min.x, p1.x);
+        min.y = Math.min(min.y, p1.y);
+        min.x = Math.min(min.x, p2.x);
+        min.y = Math.min(min.y, p2.y);
+
+        max.x = Math.max(max.x, p1.x);
+        max.y = Math.max(max.y, p1.y);
+        max.x = Math.max(max.x, p2.x);
+        max.y = Math.max(max.y, p2.y);
+
+        return new Point2D[] { min, max };
+    }
 }
