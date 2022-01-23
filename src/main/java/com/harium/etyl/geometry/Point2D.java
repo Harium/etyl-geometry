@@ -41,6 +41,19 @@ public class Point2D {
         this.y += y;
     }
 
+    public void scale(double factor) {
+        this.x *= factor;
+        this.y *= factor;
+    }
+
+    public void scaleX(double factor) {
+        this.x *= factor;
+    }
+
+    public void scaleY(double factor) {
+        this.y *= factor;
+    }
+
     public double angle(Point2D point) {
         return angle(point.x, point.y);
     }

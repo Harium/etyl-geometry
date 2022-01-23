@@ -83,6 +83,24 @@ public class Path2D {
         }
     }
 
+    public void scale(float factor) {
+        for (DataCurve curve : curves) {
+            curve.getStart().scale(factor);
+            curve.getEnd().scale(factor);
+
+            if (CurveType.QUADRATIC_BEZIER == curve.getType()) {
+                QuadraticCurve quadratic = (QuadraticCurve) curve;
+                quadratic.getControl1().scale(factor);
+
+            } else if (CurveType.CUBIC_BEZIER == curve.getType()) {
+                CubicCurve cubic = (CubicCurve) curve;
+
+                cubic.getControl1().scale(factor);
+                cubic.getControl2().scale(factor);
+            }
+        }
+    }
+
     public void flipHorizontal() {
         Point2D[] boundingBox = calculateBoundingBox();
 
