@@ -30,12 +30,10 @@ public class Curve {
         Point2D[] coordinates = new Point2D[resolution];
         double step = 1.0 / (resolution - 1);
 
-        coordinates[0] = new Point2D(p0);
-        for (int i = 1; i < resolution - 1; i++) {
+        for (int i = 0; i < resolution; i++) {
             double t = i * step;
             coordinates[i] = new Point2D(x(t), y(t));
         }
-        coordinates[resolution - 1] = new Point2D(p1);
         return coordinates;
     }
 
