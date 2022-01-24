@@ -70,6 +70,30 @@ public class Path2D {
         lastPoint.setLocation(x, y);
     }
 
+    /**
+     * Method that turns the path into a circle
+     * Math formula From: https://stackoverflow.com/a/27863181/7030976
+     *
+     * @param cx - x position of center
+     * @param cy - y position of center
+     * @param radius - radius of the circle
+     */
+    public void circle(double cx, double cy, double radius) {
+        Point2D top = new Point2D(cx, cy - radius);
+        Point2D right = new Point2D(cx + radius, cy);
+        Point2D left = new Point2D(cx - radius, cy);
+        Point2D bottom = new Point2D(cx, cy + radius);
+
+        double controlSize = (radius * 4.0 / 3.0) * Math.tan(Math.PI / 8.0);
+
+        add(new CubicCurve(top, right, new Point2D(top).add(controlSize, 0), new Point2D(right).add(0, -controlSize)));
+        add(new CubicCurve(right, bottom, new Point2D(right).add(0, controlSize), new Point2D(bottom).add(controlSize, 0)));
+        add(new CubicCurve(bottom, left, new Point2D(bottom).add(-controlSize, 0), new Point2D(left).add(0, controlSize)));
+        add(new CubicCurve(left, top, new Point2D(left).add(0, -controlSize), new Point2D(top).add(-controlSize, 0)));
+
+        lastPoint = top;
+    }
+
     public void close() {
         if (curves.size() < 2) {
             return;
