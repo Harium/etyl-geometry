@@ -29,6 +29,16 @@ public class CubicBezier extends Curve {
         return CubicBezier.interpolate(t, p0.y, p1.y, p2.y, p3.y);
     }
 
+    /**
+     * Method to interpolate a cubic bezier curve
+     *
+     * @param t normalized location on the curve
+     * @param p0 start point
+     * @param p1 control point 1
+     * @param p2 control point 2
+     * @param p3 end point
+     * @return
+     */
     public static double interpolate(double t, double p0, double p1, double p2, double p3) {
         double t2 = t * t;  // t^2
         double t3 = t2 * t; // t^3

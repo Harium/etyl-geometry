@@ -56,22 +56,21 @@ public class CurveTest {
         Point2D end = new Point2D(width, height / 2);
 
         curve = new CubicBezier(start,
-                                end,
                                 new Point2D(0, 0),
-                                new Point2D(width, 0));
+                                new Point2D(width, 0),
+                                end);
 
         Point2D[] coordinates = curve.flattenCurve(3);
+        assertEquals(3, coordinates.length);
 
         assertEquals(start.x, coordinates[0].x, 0);
         assertEquals(start.y, coordinates[0].y, 0);
 
         assertEquals(width / 2, coordinates[1].x, 0);
-        assertEquals(height / 4, coordinates[1].y, 0);
+        assertEquals(height / 8, coordinates[1].y, 0);
 
         assertEquals(end.x, coordinates[2].x, 0);
         assertEquals(end.y, coordinates[2].y, 0);
-
-        assertEquals(3, coordinates.length);
     }
 
     @Test
@@ -83,22 +82,22 @@ public class CurveTest {
         Point2D end = new Point2D(width / 2, height);
 
         curve = new CubicBezier(start,
-                                end,
                                 new Point2D(width, 0),
-                                new Point2D(width, height));
+                                new Point2D(width, height),
+                                end);
 
         Point2D[] coordinates = curve.flattenCurve(3);
+
+        assertEquals(3, coordinates.length);
 
         assertEquals(start.x, coordinates[0].x, 0);
         assertEquals(start.y, coordinates[0].y, 0);
 
-        assertEquals(width * (3 / 4f), coordinates[1].x, 0);
+        assertEquals(width * (7 / 8f), coordinates[1].x, 0);
         assertEquals(height / 2, coordinates[1].y, 0);
 
         assertEquals(end.x, coordinates[2].x, 0);
         assertEquals(end.y, coordinates[2].y, 0);
-
-        assertEquals(3, coordinates.length);
     }
 
 }

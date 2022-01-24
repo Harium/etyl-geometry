@@ -7,8 +7,9 @@ import com.harium.etyl.geometry.Point2D;
  */
 public class Curve {
 
-    // Start / End
+    // Start
     public Point2D p0;
+    // End
     public Point2D p1;
 
     public Curve() {
