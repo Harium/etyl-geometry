@@ -28,9 +28,11 @@ public class Point2D {
         this.y = y;
     }
 
-    public void offset(double x, double y) {
+    public Point2D add(double x, double y) {
         offsetX(x);
         offsetY(y);
+
+        return this;
     }
 
     public void offsetX(double x) {
@@ -82,17 +84,18 @@ public class Point2D {
         return angleInDegrees;
     }
 
-    public void rotate(double cx, double cy, double degreeAngle) {
+    public Point2D rotate(double cx, double cy, double degreeAngle) {
         double angle = Math.toRadians(degreeAngle);
         double nx = cx + (x - cx) * Math.cos(angle) - (y - cy) * Math.sin(angle);
         double ny = cy + (x - cx) * Math.sin(angle) + (y - cy) * Math.cos(angle);
 
         x = nx;
         y = ny;
+        return this;
     }
 
-    public void rotate(Point2D p, double degreeAngle) {
-        rotate(p.x, p.y, degreeAngle);
+    public Point2D rotate(Point2D p, double degreeAngle) {
+        return rotate(p.x, p.y, degreeAngle);
     }
 
     public double distance(Point2D point) {
