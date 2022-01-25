@@ -6,6 +6,6 @@ Etyl's geometry module
 <dependency>
     <groupId>com.harium.etyl</groupId>
     <artifactId>geometry</artifactId>
-    <version>1.3.0</version>
+    <version>1.3.1</version>
 </dependency>
 ```
