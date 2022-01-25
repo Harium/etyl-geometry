@@ -35,6 +35,10 @@ public class Path2D {
         curves.remove(curves.size() - 1);
     }
 
+    public DataCurve firstCurve() {
+        return curves.get(0);
+    }
+
     public DataCurve lastCurve() {
         return curves.get(curves.size() - 1);
     }
@@ -208,6 +212,10 @@ public class Path2D {
             }
         }
         return new Point2D[] { min, max };
+    }
+
+    public boolean isClosed() {
+        return (firstCurve().getStart().x == lastCurve().getEnd().x && (firstCurve().getStart().y == lastCurve().getEnd().y));
     }
 
 }
