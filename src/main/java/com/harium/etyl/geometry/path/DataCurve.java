@@ -3,16 +3,14 @@ package com.harium.etyl.geometry.path;
 import com.harium.etyl.geometry.Point2D;
 import com.harium.etyl.geometry.curve.Curve;
 
-import static com.harium.etyl.geometry.path.CurveType.SEGMENT;
-
+/**
+ * This class handles a curve and its segmented version
+ */
 public abstract class DataCurve {
 
     public static final int SEGMENT_COUNT = 16;
 
     protected CurveType type;
-
-    protected Point2D start;
-    protected Point2D end;
 
     protected Curve curve;
 
@@ -24,25 +22,13 @@ public abstract class DataCurve {
 
     }
 
-    public Point2D getStart() {
-        return start;
-    }
+    public abstract Point2D getStart();
 
-    public void setStart(Point2D start) {
-        this.start = start;
-        curve.p0 = start;
-        updateCurve();
-    }
+    public abstract void setStart(Point2D start);
 
-    public Point2D getEnd() {
-        return end;
-    }
+    public abstract Point2D getEnd();
 
-    public void setEnd(Point2D end) {
-        this.end = end;
-        curve.p1 = end;
-        updateCurve();
-    }
+    public abstract void setEnd(Point2D end);
 
     public CurveType getType() {
         return type;
@@ -61,7 +47,15 @@ public abstract class DataCurve {
     }
 
     protected void updateCurve() {
-        segments = curve.flattenCurve(segmentCount);
+        segments = flattenCurve(segmentCount);
     }
 
+    public Point2D[] flattenCurve(int segmentCount) {
+        return curve.flattenCurve(segmentCount);
+    }
+
+    public void translate(float x, float y) {
+        curve.translate(x, y);
+        updateCurve();
+    }
 }

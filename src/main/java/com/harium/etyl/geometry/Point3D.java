@@ -27,7 +27,7 @@ public class Point3D extends Point2D {
     }
 
     public void setLocation(double x, double y, double z) {
-        this.setLocation(x, y);
+        this.set(x, y);
         this.z = z;
     }
 

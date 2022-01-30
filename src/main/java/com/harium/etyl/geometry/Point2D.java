@@ -10,22 +10,26 @@ public class Point2D {
 
     public Point2D() {
         super();
-        setLocation(0, 0);
+        set(0, 0);
     }
 
     public Point2D(double x, double y) {
         super();
-        setLocation(x, y);
+        set(x, y);
     }
 
     public Point2D(Point2D point) {
         super();
-        setLocation(point.x, point.y);
+        set(point.x, point.y);
     }
 
-    public void setLocation(double x, double y) {
+    public void set(double x, double y) {
         this.x = x;
         this.y = y;
+    }
+
+    public void set(Point2D point) {
+        set(point.x, point.y);
     }
 
     public Point2D add(double x, double y) {

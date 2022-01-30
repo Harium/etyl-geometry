@@ -71,7 +71,7 @@ public class Path2D {
     }
 
     public void moveTo(double x, double y) {
-        lastPoint.setLocation(x, y);
+        lastPoint.set(x, y);
     }
 
     /**
@@ -111,8 +111,19 @@ public class Path2D {
         }
     }
 
+    public void translate(float x, float y) {
+        for (int i = 0; i < curves.size(); i++) {
+            DataCurve curve = curves.get(i);
+            curve.translate(x, y);
+            if (i < curves.size() - 1) {
+                curve.getEnd().add(-x, -y);
+            }
+        }
+    }
+
     public void scale(float factor) {
-        for (DataCurve curve : curves) {
+        for (int i = 0; i < curves.size(); i++) {
+            DataCurve curve = curves.get(i);
             curve.getStart().scale(factor);
             curve.getEnd().scale(factor);
 
@@ -125,6 +136,9 @@ public class Path2D {
 
                 cubic.getControl1().scale(factor);
                 cubic.getControl2().scale(factor);
+            }
+            if ((i < curves.size() - 1) || !curve.getEnd().equals(firstCurve().getStart())) {
+                curve.getEnd().scale(1 / factor);
             }
         }
     }
@@ -218,4 +232,19 @@ public class Path2D {
         return (firstCurve().getStart().x == lastCurve().getEnd().x && (firstCurve().getStart().y == lastCurve().getEnd().y));
     }
 
+    public Path2D copy(Path2D path2D) {
+        for (DataCurve curve : path2D.curves) {
+            if (CurveType.SEGMENT == curve.getType()) {
+                SegmentCurve segmentCurve = (SegmentCurve) curve;
+                curves.add(new SegmentCurve().copy(segmentCurve));
+            } else if (CurveType.QUADRATIC_BEZIER == curve.getType()) {
+                QuadraticCurve quadratic = (QuadraticCurve) curve;
+                curves.add(new QuadraticCurve().copy(quadratic));
+            } else if (CurveType.CUBIC_BEZIER == curve.getType()) {
+                CubicCurve cubic = (CubicCurve) curve;
+                curves.add(new CubicCurve().copy(cubic));
+            }
+        }
+        return this;
+    }
 }
