@@ -37,4 +37,17 @@ public class Path2DTest {
         assertEquals(0, path.getCurves().get(1).getEnd().y, 0);
     }
 
+    @Test
+    public void testCalculateCenter() {
+        Path2D path = new Path2D();
+
+        path.add(new SegmentCurve(new Point2D(10, 0), new Point2D(20, 0)));
+        path.add(new SegmentCurve(new Point2D(20, 0), new Point2D(30, 10)));
+
+        Point2D centroid = path.calculateCenter();
+
+        assertEquals(20, centroid.x, 0);
+        assertEquals(5, centroid.y, 0);
+    }
+
 }

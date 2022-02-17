@@ -28,7 +28,7 @@ public class QuadraticBezier3 extends Curve3 {
         return p2;
     }
 
-    public void translate(float x, float y, float z) {
+    public void translate(double x, double y, double z) {
         super.translate(x, y, z);
 
         p2.x += x;

@@ -111,17 +111,14 @@ public class Path2D {
         }
     }
 
-    public void translate(float x, float y) {
+    public void translate(double x, double y) {
         for (int i = 0; i < curves.size(); i++) {
             DataCurve curve = curves.get(i);
             curve.translate(x, y);
-            if (i < curves.size() - 1) {
-                curve.getEnd().add(-x, -y);
-            }
         }
     }
 
-    public void scale(float factor) {
+    public void scale(double factor) {
         for (int i = 0; i < curves.size(); i++) {
             DataCurve curve = curves.get(i);
             curve.getStart().scale(factor);
@@ -246,5 +243,13 @@ public class Path2D {
             }
         }
         return this;
+    }
+
+    public Point2D calculateCenter() {
+        Point2D[] bb = calculateBoundingBox();
+
+        double cx = Math.abs(bb[1].x - bb[0].x) / 2;
+        double cy = Math.abs(bb[1].y + bb[0].y) / 2;
+        return new Point2D(cx, cy);
     }
 }

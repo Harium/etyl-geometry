@@ -57,7 +57,7 @@ public class CubicBezier extends Curve {
         return p3;
     }
 
-    public void translate(float x, float y) {
+    public void translate(double x, double y) {
         super.translate(x, y);
 
         p2.x += x;

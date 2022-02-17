@@ -54,7 +54,7 @@ public abstract class DataCurve {
         return curve.flattenCurve(segmentCount);
     }
 
-    public void translate(float x, float y) {
+    public void translate(double x, double y) {
         curve.translate(x, y);
         updateCurve();
     }

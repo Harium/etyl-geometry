@@ -40,7 +40,7 @@ public class Curve3 {
         return p1;
     }
 
-    public void translate(float x, float y, float z) {
+    public void translate(double x, double y, double z) {
         p0.x += x;
         p0.y += y;
         p0.z += z;
