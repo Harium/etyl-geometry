@@ -90,10 +90,10 @@ public class Path2D {
 
         double controlSize = (radius * 4.0 / 3.0) * Math.tan(Math.PI / 8.0);
 
-        add(new CubicCurve(top, right, new Point2D(top).add(controlSize, 0), new Point2D(right).add(0, -controlSize)));
-        add(new CubicCurve(right, bottom, new Point2D(right).add(0, controlSize), new Point2D(bottom).add(controlSize, 0)));
-        add(new CubicCurve(bottom, left, new Point2D(bottom).add(-controlSize, 0), new Point2D(left).add(0, controlSize)));
-        add(new CubicCurve(left, top, new Point2D(left).add(0, -controlSize), new Point2D(top).add(-controlSize, 0)));
+        add(new CubicCurve(top, right, new Point2D(top).translate(controlSize, 0), new Point2D(right).translate(0, -controlSize)));
+        add(new CubicCurve(right, bottom, new Point2D(right).translate(0, controlSize), new Point2D(bottom).translate(controlSize, 0)));
+        add(new CubicCurve(bottom, left, new Point2D(bottom).translate(-controlSize, 0), new Point2D(left).translate(0, controlSize)));
+        add(new CubicCurve(left, top, new Point2D(left).translate(0, -controlSize), new Point2D(top).translate(-controlSize, 0)));
 
         lastPoint = top;
     }
@@ -119,25 +119,40 @@ public class Path2D {
     }
 
     public void scale(double factor) {
+        scale(factor, factor);
+    }
+
+    public void scale(double x, double y) {
+        Point2D center = calculateCentroid();
+
         for (int i = 0; i < curves.size(); i++) {
             DataCurve curve = curves.get(i);
-            curve.getStart().scale(factor);
-            curve.getEnd().scale(factor);
+            scale(curve.getStart(), center, x, y);
+            scale(curve.getEnd(), center, x, y);
 
             if (CurveType.QUADRATIC_BEZIER == curve.getType()) {
                 QuadraticCurve quadratic = (QuadraticCurve) curve;
-                quadratic.getControl1().scale(factor);
+                scale(quadratic.getControl1(), center, x, y);
 
             } else if (CurveType.CUBIC_BEZIER == curve.getType()) {
                 CubicCurve cubic = (CubicCurve) curve;
 
-                cubic.getControl1().scale(factor);
-                cubic.getControl2().scale(factor);
+                scale(cubic.getControl1(), center, x, y);
+                scale(cubic.getControl2(), center, x, y);
             }
-            if ((i < curves.size() - 1) || !curve.getEnd().equals(firstCurve().getStart())) {
+            /*if ((i < curves.size() - 1) || !curve.getEnd().equals(firstCurve().getStart())) {
                 curve.getEnd().scale(1 / factor);
-            }
+            }*/
         }
+    }
+
+    private void scale(Point2D point, Point2D center, double x, double y) {
+        // Move to the origin
+        point.translate(-center.x, -center.y);
+        // Scale point
+        point.scale(x, y);
+        // Move it back
+        point.translate(center.x, center.y);
     }
 
     public void flipHorizontal() {
@@ -251,5 +266,23 @@ public class Path2D {
         double cx = Math.abs(bb[1].x - bb[0].x) / 2;
         double cy = Math.abs(bb[1].y + bb[0].y) / 2;
         return new Point2D(cx, cy);
+    }
+
+    public Point2D calculateCentroid() {
+        double x = 0;
+        double y = 0;
+
+        for (DataCurve curve : curves) {
+            x += curve.getStart().x;
+            x += curve.getEnd().x;
+
+            y += curve.getStart().y;
+            y += curve.getEnd().y;
+        }
+
+        x /= curves.size() * 2;
+        y /= curves.size() * 2;
+
+        return new Point2D(x, y);
     }
 }

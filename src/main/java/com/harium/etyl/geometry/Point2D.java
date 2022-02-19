@@ -32,32 +32,39 @@ public class Point2D {
         set(point.x, point.y);
     }
 
-    public Point2D add(double x, double y) {
-        offsetX(x);
-        offsetY(y);
+    public Point2D translate(double x, double y) {
+        translateX(x);
+        translateY(y);
 
         return this;
     }
 
-    public void offsetX(double x) {
+    public void translateX(double x) {
         this.x += x;
     }
 
-    public void offsetY(double y) {
+    public void translateY(double y) {
         this.y += y;
     }
 
-    public void scale(double factor) {
-        this.x *= factor;
-        this.y *= factor;
+    public Point2D scale(double factor) {
+        return scale(factor, factor);
     }
 
-    public void scaleX(double factor) {
-        this.x *= factor;
+    public Point2D scale(double x, double y) {
+        scaleX(x);
+        scaleY(y);
+        return this;
     }
 
-    public void scaleY(double factor) {
+    public Point2D scaleX(double factor) {
+        this.x *= factor;
+        return this;
+    }
+
+    public Point2D scaleY(double factor) {
         this.y *= factor;
+        return this;
     }
 
     public double angle(Point2D point) {
