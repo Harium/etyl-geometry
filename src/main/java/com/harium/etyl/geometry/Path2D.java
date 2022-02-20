@@ -118,6 +118,10 @@ public class Path2D {
         }
     }
 
+    public void translate(Point2D translation) {
+        translate(translation.x, translation.y);
+    }
+
     public void scale(double factor) {
         scale(factor, factor);
     }
@@ -144,6 +148,10 @@ public class Path2D {
                 curve.getEnd().scale(1 / factor);
             }*/
         }
+    }
+
+    public void scale(Point2D factor) {
+        scale(factor.x, factor.y);
     }
 
     private void scale(Point2D point, Point2D center, double x, double y) {
